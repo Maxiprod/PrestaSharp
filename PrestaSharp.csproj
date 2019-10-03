@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net461</TargetFramework>
+    <TargetFramework>net48</TargetFramework>
     <RootNamespace>Bukimedia.PrestaSharp</RootNamespace>
     <AssemblyName>Bukimedia.PrestaSharp</AssemblyName>
     <Company>Bukimedia</Company>
@@ -10,7 +10,7 @@
     <PackageTags>prestashop rest webservice</PackageTags>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="RestSharp" Version="106.5.4" />
+    <PackageReference Include="RestSharp" Version="106.6.10" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\" />
