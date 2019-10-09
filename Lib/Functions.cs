@@ -620,15 +620,30 @@ namespace Bukimedia.PrestaSharp.Lib
         internal static string ReplaceFirstOccurrence(string Source, string Find, string Replace)
         {
             int Place = Source.IndexOf(Find);
-            string result = Source.Remove(Place, Find.Length).Insert(Place, Replace);
-            return result;
+            if (Place >= 0)
+            {
+                string result = Source.Remove(Place, Find.Length).Insert(Place, Replace);
+                return result;
+            }
+            else
+            {
+                return Source;
+            }
         }
 
         internal static string ReplaceLastOccurrence(string Source, string Find, string Replace)
         {
             int Place = Source.LastIndexOf(Find);
-            string result = Source.Remove(Place, Find.Length).Insert(Place, Replace);
-            return result;
+
+            if (Place >= 0)
+            {
+                string result = Source.Remove(Place, Find.Length).Insert(Place, Replace);
+                return result;
+            }
+            else
+            {
+                return Source;
+            }
         }
     }
 }
