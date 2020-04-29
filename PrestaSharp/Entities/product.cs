@@ -125,8 +125,6 @@ namespace Bukimedia.PrestaSharp.Entities
         public List<Entities.AuxEntities.language> available_now { get; set; }
         public List<Entities.AuxEntities.language> available_later { get; set; }
         public AuxEntities.AssociationsProduct associations { get; set; }
-        public int low_stock_alert { get; set; }
-        public int low_stock_threshold { get; set; }
 
         public product()
         {
