@@ -10,10 +10,12 @@ using System.Xml;
 using System.ComponentModel;
 using RestSharp.Deserializers;
 using RestSharp;
+using RestSharp.Serialization;
+using RestSharp.Serialization.Xml;
 
 namespace Bukimedia.PrestaSharp.Deserializers
 {
-    public class PrestaSharpDeserializer : IDeserializer
+    public class PrestaSharpDeserializer : IXmlDeserializer
     {
         public string RootElement { get; set; }
         public string Namespace { get; set; }
@@ -127,7 +129,8 @@ namespace Bukimedia.PrestaSharp.Deserializers
                 }
                 else if (type.IsPrimitive)
                 {
-                    prop.SetValue(x, value.ChangeType(type, Culture), null);
+                    if (!String.IsNullOrEmpty(value.ToString()))
+                        prop.SetValue(x, value.ChangeType(type, Culture), null);
                 }
                 else if (type.IsEnum)
                 {
@@ -301,6 +304,16 @@ namespace Bukimedia.PrestaSharp.Deserializers
             var elements = root.Elements(t.Name.AsNamespaced(Namespace));
 
             var name = t.Name;
+
+            if (!elements.Any())
+            {
+                var lowerName = name.ToLowerInvariant().AsNamespaced(Namespace);
+                var firstNode = root.FirstNode;
+                if (firstNode != null)
+                {
+                    elements = ((XElement)firstNode).Elements(lowerName);
+                }
+            }
 
             if (!elements.Any())
             {
